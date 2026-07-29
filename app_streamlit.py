@@ -79,7 +79,7 @@ def validate_inputs(payload: dict, feature_ranges: dict) -> list:
         lo, hi = bounds.get("min"), bounds.get("max")
         if lo is not None and value < lo:
             warnings.append(f"**{field}** = {value:,} is below the training range minimum ({lo:,.0f}).")
-        elif hi is not None and value > hi:
+        elif hi is not None and round(value, 1) > round(hi, 1):
             warnings.append(f"**{field}** = {value:,} is above the training range maximum ({hi:,.0f}).")
     return warnings
 
@@ -97,6 +97,7 @@ st.sidebar.header("Loan Application")
 loan_amnt = st.sidebar.slider("Loan amount ($)", 1000, 40000, 15000, step=500)
 term = st.sidebar.selectbox("Term (months)", [36, 60])
 int_rate = st.sidebar.slider("Interest rate (%)", 5.0, 31.0, 13.5, step=0.1)
+int_rate = round(int_rate, 1)
 grade = st.sidebar.selectbox("Internal grade", list("ABCDEFG"), index=1)
 annual_inc = st.sidebar.number_input("Annual income ($)", 15000, 800000, 65000, step=1000)
 emp_length = st.sidebar.selectbox(
