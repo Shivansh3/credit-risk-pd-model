@@ -1,0 +1,16 @@
+,0
+int_rate,0.40018842
+term,0.1734916
+dti,0.13024187
+revol_util,0.11529666
+loan_to_income,0.10484173
+home_ownership_RENT,0.081678174
+inq_last_6mths,0.07796339
+mort_acc,0.074254565
+open_acc_ratio,0.07180195
+revol_bal,0.067136444
+loan_amnt,0.06524409
+revol_bal_to_income,0.0645423
+open_acc,0.062178694
+emp_length_years,0.061817348
+annual_inc,0.052250266

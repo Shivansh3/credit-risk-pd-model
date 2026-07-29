@@ -1,0 +1,73 @@
+{
+  "all_models": [
+    {
+      "model": "LogisticRegression (WOE)",
+      "auroc": 0.7149,
+      "gini": 0.4298,
+      "ks": 0.3094,
+      "pr_auc": 0.379,
+      "brier_score": 0.2168
+    },
+    {
+      "model": "LightGBM (Optuna-tuned)",
+      "auroc": 0.7242,
+      "gini": 0.4483,
+      "ks": 0.3247,
+      "pr_auc": 0.3931,
+      "brier_score": 0.2107
+    },
+    {
+      "model": "XGBoost (Optuna-tuned)",
+      "auroc": 0.7248,
+      "gini": 0.4496,
+      "ks": 0.3265,
+      "pr_auc": 0.3932,
+      "brier_score": 0.2112
+    }
+  ],
+  "best_model": {
+    "model": "XGBoost (Optuna-tuned)",
+    "auroc": 0.7248,
+    "gini": 0.4496,
+    "ks": 0.3265,
+    "pr_auc": 0.3932,
+    "brier_score": 0.2112
+  },
+  "iv_summary": {
+    "grade": 0.46347873790788285,
+    "emp_length": 0.013558888048967356,
+    "home_ownership": 0.032151630322811826,
+    "verification_status": 0.05416782739327626,
+    "purpose": 0.019429892796758393,
+    "initial_list_status": 0.00036814067264561947,
+    "application_type": 0.0015430749651783129,
+    "income_bucket": 0.02866837149960351
+  },
+  "risk_band_summary": {
+    "A - Low Risk": {
+      "observed_default_rate": 0.0168,
+      "n": 891
+    },
+    "B - Moderate Risk": {
+      "observed_default_rate": 0.0492,
+      "n": 9369
+    },
+    "C - Elevated Risk": {
+      "observed_default_rate": 0.1135,
+      "n": 15655
+    },
+    "D - High Risk": {
+      "observed_default_rate": 0.2061,
+      "n": 18743
+    },
+    "E - Very High Risk": {
+      "observed_default_rate": 0.3844,
+      "n": 15342
+    }
+  },
+  "calibration": {
+    "method": "isotonic",
+    "brier_before": 0.21120370117248988,
+    "brier_after": 0.14314551802510095
+  }
+}

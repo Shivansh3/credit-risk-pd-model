@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint (syntax check)
+        run: |
+          python -m py_compile credit_risk_model.py app.py app_streamlit.py generate_synthetic_data.py
+
+      - name: Generate a small synthetic dataset
+        run: python generate_synthetic_data.py --n 5000
+
+      - name: Run training pipeline (smoke test, 2 Optuna trials)
+        run: python credit_risk_model.py --data data/loan_data.csv --trials 2
+
+      - name: Verify model artifacts exist
+        run: |
+          test -f models/best_model.pkl
+          test -f models/metrics.json
+
+      - name: Import FastAPI app (sanity check)
+        run: python -c "import app"
